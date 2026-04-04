@@ -19,6 +19,7 @@ Manages show/hide of registered panels, supports modal overlays, JSON-driven pan
 - **LocalizationManager integration** — refresh visible panels' text on language change (activated via `UIMANAGER_LM`)
 - **EventManager integration** — broadcast `ui.panel.shown/hidden` events (activated via `UIMANAGER_EM` or `EVENTMANAGER_UIM`)
 - **Custom Inspector** — live panel controls, visible panel list, and registered panel catalogue in Play Mode
+- **Odin Inspector integration** — `SerializedMonoBehaviour` base for full Inspector serialization of complex types; runtime-display fields marked `[ReadOnly]` in Play Mode (activated via `ODIN_INSPECTOR`)
 
 
 ## Installation
@@ -146,3 +147,4 @@ JSON entries are **merged by id** — mods can add new panels or override Inspec
 | `UIMANAGER_LM` | UiManager ←→ LocalizationManager |
 | `UIMANAGER_EM` | UiManager → EventManager (fire events) |
 | `EVENTMANAGER_UIM` | EventManager ← UiManager (re-broadcast) |
+| `ODIN_INSPECTOR` | UiManager ↔→ Odin Inspector (`SerializedMonoBehaviour` + `[ReadOnly]`) |

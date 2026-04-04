@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 
 namespace UiManager.Runtime
 {
@@ -12,7 +15,11 @@ namespace UiManager.Runtime
     /// </summary>
     [AddComponentMenu("Managers/UI Manager")]
     [DisallowMultipleComponent]
+#if ODIN_INSPECTOR
+    public class UiManager : SerializedMonoBehaviour
+#else
     public class UiManager : MonoBehaviour
+#endif
     {
         // ──────────────────────────────────────────────────────────
         // Inspector fields
