@@ -1,0 +1,9 @@
+{
+  "name": "UiManager.Runtime",
+  "rootNamespace": "UiManager.Runtime",
+  "references": [],
+  "includePlatforms": [],
+  "excludePlatforms": ["Editor"],
+  "allowUnsafeCode": false,
+  "autoReferenced": true
+}

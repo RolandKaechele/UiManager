@@ -1,0 +1,14 @@
+{
+  "name": "com.rolandkaechele.uimanager",
+  "displayName": "UiManager",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "Centralized UI state and transition manager for Unity. Supports cutscenes, gameplay, modding, and bridge integration.",
+  "author": {
+    "name": "Roland Kächele",
+    "email": "roland@kaechele.dev"
+  },
+  "license": "MIT",
+  "keywords": ["ui", "manager", "state", "cutscene", "modding", "unity"],
+  "dependencies": {}
+}
