@@ -19,6 +19,7 @@ Manages show/hide of registered panels, supports modal overlays, JSON-driven pan
 - **LocalizationManager integration** — refresh visible panels' text on language change (activated via `UIMANAGER_LM`)
 - **EventManager integration** — broadcast `ui.panel.shown/hidden` events (activated via `UIMANAGER_EM` or `EVENTMANAGER_UIM`)
 - **Custom Inspector** — live panel controls, visible panel list, and registered panel catalogue in Play Mode
+- **DOTween Pro integration** — `CanvasGroup.DOFade` and `transform.DOPunchScale` provide polished panel show/hide animations instead of instant visibility toggles (activated via `UIMANAGER_DOTWEEN`)
 - **Odin Inspector integration** — `SerializedMonoBehaviour` base for full Inspector serialization of complex types; runtime-display fields marked `[ReadOnly]` in Play Mode (activated via `ODIN_INSPECTOR`)
 
 
