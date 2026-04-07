@@ -149,3 +149,30 @@ JSON entries are **merged by id** — mods can add new panels or override Inspec
 | `UIMANAGER_EM` | UiManager → EventManager (fire events) |
 | `EVENTMANAGER_UIM` | EventManager ← UiManager (re-broadcast) |
 | `ODIN_INSPECTOR` | UiManager ↔→ Odin Inspector (`SerializedMonoBehaviour` + `[ReadOnly]`) |
+
+
+## Editor Tools — Prefab Generation
+
+`UiManagerEditor.cs` in `Editor/` doubles as a prefab generator.
+`UiPrefabHelper` reads `StreamingAssets/ui_panels.json` and outputs one prefab per `UiPanelDefinition` into `Assets/Resources/Prefabs/UI/`.
+
+**Manual**
+
+- **Generate Prefabs → UI Panels** in the Unity menu bar
+- **Generate Prefabs → All** (`Ctrl+Shift+G`) — regenerates all registered prefab generators in one step
+
+**Automatic**
+Saving `ui_panels.json` triggers `UiPrefabPostprocessor` via `AssetPostprocessor.OnPostprocessAllAssets`.
+
+**What is generated per prefab**
+
+| Component | Details |
+| --------- | ------- |
+| `RectTransform` | Anchors stretch full screen (anchorMin 0,0 → anchorMax 1,1) |
+| `CanvasGroup` | `alpha = 0` (1 for `hud`); `blocksRaycasts` mirrors `modal` |
+| `Image` | Added for modal / fullscreen panels; `fade_screen` gets `Color.black`, others semi-transparent |
+
+> Generated prefabs are starting points. Add child layouts, text components, and button callbacks before shipping.
+
+**ODIN Inspector compatibility**
+When `ODIN_INSPECTOR` is defined, `UiManagerEditor` inherits `OdinEditor` so the full ODIN property tree is rendered. The prefab generation helper `UiPrefabHelper` is a plain static class and is completely ODIN-independent.
