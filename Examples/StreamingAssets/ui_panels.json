@@ -1,58 +1,58 @@
 {
-  "panels": [
-    {
-      "id": "hud",
-      "displayName": "HUD",
-      "prefabPath": "UI/HUD",
-      "modal": false,
-      "hideHud": false,
-      "category": "gameplay",
-      "layer": 0
-    },
-    {
-      "id": "dialogue",
-      "displayName": "Dialogue Box",
-      "prefabPath": "UI/DialogueBox",
-      "modal": false,
-      "hideHud": false,
-      "category": "dialogue",
-      "layer": 10
-    },
-    {
-      "id": "inventory",
-      "displayName": "Inventory",
-      "prefabPath": "UI/Inventory",
-      "modal": true,
-      "hideHud": false,
-      "category": "gameplay",
-      "layer": 20
-    },
-    {
-      "id": "pause",
-      "displayName": "Pause Menu",
-      "prefabPath": "UI/PauseMenu",
-      "modal": true,
-      "hideHud": true,
-      "category": "system",
-      "layer": 30
-    },
-    {
-      "id": "achievement_toast",
-      "displayName": "Achievement Notification",
-      "prefabPath": "UI/AchievementToast",
-      "modal": false,
-      "hideHud": false,
-      "category": "system",
-      "layer": 50
-    },
-    {
-      "id": "load_screen",
-      "displayName": "Loading Screen",
-      "prefabPath": "UI/LoadScreen",
-      "modal": true,
-      "hideHud": true,
-      "category": "system",
-      "layer": 100
-    }
-  ]
+    "panels":  [
+                   {
+                       "id":  "hud",
+                       "displayName":  "HUD",
+                       "prefabPath":  "UI/HUD",
+                       "modal":  false,
+                       "hideHud":  false,
+                       "category":  "gameplay",
+                       "layer":  0
+                   },
+                   {
+                       "id":  "dialogue",
+                       "displayName":  "Dialogue Box",
+                       "prefabPath":  "UI/DialogueBox",
+                       "modal":  false,
+                       "hideHud":  false,
+                       "category":  "dialogue",
+                       "layer":  10
+                   },
+                   {
+                       "id":  "inventory",
+                       "displayName":  "Inventory",
+                       "prefabPath":  "UI/Inventory",
+                       "modal":  true,
+                       "hideHud":  false,
+                       "category":  "gameplay",
+                       "layer":  20
+                   },
+                   {
+                       "id":  "pause",
+                       "displayName":  "Pause Menu",
+                       "prefabPath":  "UI/PauseMenu",
+                       "modal":  true,
+                       "hideHud":  true,
+                       "category":  "system",
+                       "layer":  30
+                   },
+                   {
+                       "id":  "achievement_toast",
+                       "displayName":  "Achievement Notification",
+                       "prefabPath":  "UI/AchievementToast",
+                       "modal":  false,
+                       "hideHud":  false,
+                       "category":  "system",
+                       "layer":  50
+                   },
+                   {
+                       "id":  "load_screen",
+                       "displayName":  "Loading Screen",
+                       "prefabPath":  "UI/LoadScreen",
+                       "modal":  true,
+                       "hideHud":  true,
+                       "category":  "system",
+                       "layer":  100
+                   }
+               ]
 }
