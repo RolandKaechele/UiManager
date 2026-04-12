@@ -1,7 +1,7 @@
 {
     "name": "UiManager.Editor",
     "rootNamespace": "UiManager.Editor",
-    "references": ["UiManager.Runtime"],
+    "references": ["UiManager.Runtime", "PrefabGenerator.Editor"],
     "includePlatforms": ["Editor"],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
