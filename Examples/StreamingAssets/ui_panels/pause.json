@@ -1,0 +1,13 @@
+﻿{
+    "panels":  [
+                   {
+                       "id":  "pause",
+                       "displayName":  "Pause Menu",
+                       "prefabPath":  "UI/PauseMenu",
+                       "modal":  true,
+                       "hideHud":  true,
+                       "category":  "system",
+                       "layer":  30
+                   }
+               ]
+}

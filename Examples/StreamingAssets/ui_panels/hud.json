@@ -1,0 +1,13 @@
+﻿{
+    "panels":  [
+                   {
+                       "id":  "hud",
+                       "displayName":  "HUD",
+                       "prefabPath":  "UI/HUD",
+                       "modal":  false,
+                       "hideHud":  false,
+                       "category":  "gameplay",
+                       "layer":  0
+                   }
+               ]
+}

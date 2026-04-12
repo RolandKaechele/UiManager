@@ -18,8 +18,7 @@ namespace UiManager.Editor
     /// </summary>
     public class UiPanelJsonEditorWindow : EditorWindow
     {
-        private const string JsonFolderName   = "ui_panels";
-        private const string JsonSaveFileName = "ui_panels.json";
+        private const string JsonFolderName = "ui_panels";
 
         private UiPanelEditorBridge      _bridge;
         private UnityEditor.Editor       _bridgeEditor;
@@ -88,7 +87,6 @@ namespace UiManager.Editor
                 else
                 {
                     Directory.CreateDirectory(folderPath);
-                    File.WriteAllText(Path.Combine(folderPath, JsonSaveFileName), JsonUtility.ToJson(new UiPanelEditorWrapper(), true));
                     AssetDatabase.Refresh();
                 }
                 _bridge.panels = list;
@@ -105,11 +103,16 @@ namespace UiManager.Editor
             {
                 string folderPath = Path.Combine(Application.streamingAssetsPath, JsonFolderName);
                 if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                var w = new UiPanelEditorWrapper { panels = _bridge.panels.ToArray() };
-                var path = Path.Combine(folderPath, JsonSaveFileName);
-                File.WriteAllText(path, JsonUtility.ToJson(w, true));
+                int saved = 0;
+                foreach (var entry in _bridge.panels)
+                {
+                    if (string.IsNullOrEmpty(entry.id)) continue;
+                    var w = new UiPanelEditorWrapper { panels = new[] { entry } };
+                    File.WriteAllText(Path.Combine(folderPath, $"{entry.id}.json"), JsonUtility.ToJson(w, true));
+                    saved++;
+                }
                 AssetDatabase.Refresh();
-                _status = $"Saved {_bridge.panels.Count} UI panels to {JsonFolderName}/{JsonSaveFileName}.";
+                _status = $"Saved {saved} UI panel file(s) to {JsonFolderName}/";
                 _statusError = false;
             }
             catch (Exception e) { _status = $"Save error: {e.Message}"; _statusError = true; }

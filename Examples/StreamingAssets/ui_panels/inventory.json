@@ -1,0 +1,13 @@
+﻿{
+    "panels":  [
+                   {
+                       "id":  "inventory",
+                       "displayName":  "Inventory",
+                       "prefabPath":  "UI/Inventory",
+                       "modal":  true,
+                       "hideHud":  false,
+                       "category":  "gameplay",
+                       "layer":  20
+                   }
+               ]
+}

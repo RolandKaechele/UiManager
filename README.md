@@ -54,7 +54,7 @@ npm install
 1. Create a persistent manager GameObject (or reuse your existing manager object).
 2. Attach `UiManager`.
 3. Set `hudPanelId` to the id of your HUD panel (default: `"hud"`).
-4. Add panel definitions in the Inspector or via `ui_panels.json`.
+4. Add panel definitions in the Inspector or via JSON files in `StreamingAssets/ui_panels/`.
 5. Attach any bridge components (see Bridge Components below).
 
 
@@ -189,6 +189,6 @@ Open via **JSON Editors → UI Manager** in the Unity menu bar, or via the **Ope
 | ------ | ------ |
 | **Load** | Reads all `*.json` from `StreamingAssets/ui_panels/`; creates the folder if missing |
 | **Edit** | Add / remove / reorder entries using the Inspector list |
-| **Save** | Writes to `StreamingAssets/ui_panels/ui_panels.json` and calls `AssetDatabase.Refresh()` |
+| **Save** | Writes each entry as `<id>.json` to `StreamingAssets/ui_panels/`; entries without an `id` are skipped. Calls `AssetDatabase.Refresh()` |
 
 With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).

@@ -1,0 +1,13 @@
+﻿{
+    "panels":  [
+                   {
+                       "id":  "dialogue",
+                       "displayName":  "Dialogue Box",
+                       "prefabPath":  "UI/DialogueBox",
+                       "modal":  false,
+                       "hideHud":  false,
+                       "category":  "dialogue",
+                       "layer":  10
+                   }
+               ]
+}

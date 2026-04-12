@@ -1,0 +1,13 @@
+﻿{
+    "panels":  [
+                   {
+                       "id":  "load_screen",
+                       "displayName":  "Loading Screen",
+                       "prefabPath":  "UI/LoadScreen",
+                       "modal":  true,
+                       "hideHud":  true,
+                       "category":  "system",
+                       "layer":  100
+                   }
+               ]
+}

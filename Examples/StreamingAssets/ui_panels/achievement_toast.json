@@ -1,0 +1,13 @@
+﻿{
+    "panels":  [
+                   {
+                       "id":  "achievement_toast",
+                       "displayName":  "Achievement Notification",
+                       "prefabPath":  "UI/AchievementToast",
+                       "modal":  false,
+                       "hideHud":  false,
+                       "category":  "system",
+                       "layer":  50
+                   }
+               ]
+}
