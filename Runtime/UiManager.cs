@@ -38,7 +38,7 @@ namespace UiManager.Runtime
         [SerializeField] private bool loadFromJson;
 
         [Tooltip("Path relative to StreamingAssets/.")]
-        [SerializeField] private string jsonPath = "ui_panels.json";
+        [SerializeField] private string jsonPath = "ui_panels/";
 
         [Header("Debug")]
         [Tooltip("Log all show/hide calls to the Console.")]
@@ -184,27 +184,40 @@ namespace UiManager.Runtime
 
         private void LoadJson()
         {
-            string full = Path.Combine(Application.streamingAssetsPath, jsonPath);
-            if (!File.Exists(full))
+            string fullPath = Path.Combine(Application.streamingAssetsPath, jsonPath);
+            if (Directory.Exists(fullPath))
             {
-                Debug.LogWarning($"[UiManager] JSON not found: {full}");
-                return;
+                foreach (var file in Directory.GetFiles(fullPath, "*.json", SearchOption.TopDirectoryOnly))
+                    MergeUiPanelsFromFile(file);
             }
+            else if (File.Exists(fullPath))
+            {
+                MergeUiPanelsFromFile(fullPath);
+            }
+            else
+            {
+                Debug.LogWarning($"[UiManager] JSON not found: {fullPath}");
+            }
+        }
+
+        private void MergeUiPanelsFromFile(string path)
+        {
             try
             {
-                string json = File.ReadAllText(full);
+                string json = File.ReadAllText(path);
                 var manifest = JsonUtility.FromJson<UiPanelManifestJson>(json);
+                if (manifest?.panels == null) return;
                 foreach (var def in manifest.panels)
                 {
                     if (string.IsNullOrEmpty(def.id)) continue;
                     _map[def.id] = def;
                 }
                 if (verboseLogging)
-                    Debug.Log($"[UiManager] Loaded {manifest.panels.Count} panel definitions from {jsonPath}.");
+                    Debug.Log($"[UiManager] Merged from {path}.");
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[UiManager] Failed to parse {jsonPath}: {ex.Message}");
+                Debug.LogError($"[UiManager] Failed to load JSON: {ex.Message}");
             }
         }
 

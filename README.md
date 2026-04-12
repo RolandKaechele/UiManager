@@ -9,7 +9,7 @@ Manages show/hide of registered panels, supports modal overlays, JSON-driven pan
 - **ShowPanel / HidePanel / HideAll** — unified panel lifecycle API
 - **Modal overlays** — panels flagged as modal prevent interaction below; `hideHud` panels auto-hide the HUD
 - **Prefab instantiation** — panels are loaded from `Resources/` paths and `DontDestroyOnLoad`-ed automatically
-- **JSON / Modding** — define panels in `StreamingAssets/ui_panels.json`; merged by `id` on top of Inspector data
+- **JSON / Modding** — define panels in `StreamingAssets/ui_panels/`; merged by `id` on top of Inspector data
 - **Events** — `OnPanelShown`, `OnPanelHidden` for reactive integration
 - **StateManager integration** — auto-show/hide panels mapped to each `AppState` (activated via `UIMANAGER_STM`)
 - **CutsceneManager integration** — auto-hide HUD during sequences; restore on complete/skip (activated via `UIMANAGER_CSM`)
@@ -66,8 +66,8 @@ npm install
 | ----- | ------- | ----------- |
 | `panels` | *(empty)* | Built-in panel definitions |
 | `hudPanelId` | `"hud"` | Id of the HUD panel (auto-hidden when a `hideHud` panel is shown) |
-| `loadFromJson` | `false` | Merge definitions from `ui_panels.json` |
-| `jsonPath` | `"ui_panels.json"` | Path relative to `StreamingAssets/` |
+| `loadFromJson` | `false` | Merge definitions from `ui_panels/` |
+| `jsonPath` | `"ui_panels/"` | Folder relative to `StreamingAssets/` containing `.json` files to merge. Falls back to single-file mode if the value points to an existing file. |
 | `verboseLogging` | `false` | Log all show/hide calls to Console |
 
 ### UiPanelDefinition fields
@@ -116,7 +116,10 @@ EventManager can also re-broadcast UiManager events using `UiEventBridge` (defin
 
 ## JSON / Modding
 
-Place `ui_panels.json` in `StreamingAssets/` (path is configurable):
+Place one or more `.json` files in `StreamingAssets/ui_panels/` (path is configurable).
+All `*.json` files in the folder are loaded and merged by `id` at startup.
+
+**Example:** `StreamingAssets/ui_panels/main.json`
 
 ```json
 {
@@ -154,7 +157,7 @@ JSON entries are **merged by id** — mods can add new panels or override Inspec
 ## Editor Tools — Prefab Generation
 
 `UiManagerEditor.cs` in `Editor/` doubles as a prefab generator.
-`UiPrefabHelper` reads `StreamingAssets/ui_panels.json` and outputs one prefab per `UiPanelDefinition` into `Assets/Resources/Prefabs/UI/`.
+`UiPrefabHelper` reads `*.json` files from `StreamingAssets/ui_panels/` and outputs one prefab per `UiPanelDefinition` into `Assets/Resources/Prefabs/UI/`.
 
 **Manual**
 
@@ -162,7 +165,7 @@ JSON entries are **merged by id** — mods can add new panels or override Inspec
 - **Generate Prefabs → All** (`Ctrl+Shift+G`) — regenerates all registered prefab generators in one step
 
 **Automatic**
-Saving `ui_panels.json` triggers `UiPrefabPostprocessor` via `AssetPostprocessor.OnPostprocessAllAssets`.
+Saving any `*.json` file in `ui_panels/` triggers `UiPrefabPostprocessor` via `AssetPostprocessor.OnPostprocessAllAssets`.
 
 **What is generated per prefab**
 
@@ -184,8 +187,8 @@ Open via **JSON Editors → UI Manager** in the Unity menu bar, or via the **Ope
 
 | Action | Result |
 | ------ | ------ |
-| **Load** | Reads `StreamingAssets/ui_panels.json`; creates the file if missing |
+| **Load** | Reads all `*.json` from `StreamingAssets/ui_panels/`; creates the folder if missing |
 | **Edit** | Add / remove / reorder entries using the Inspector list |
-| **Save** | Writes back to `StreamingAssets/ui_panels.json` and calls `AssetDatabase.Refresh()` |
+| **Save** | Writes to `StreamingAssets/ui_panels/ui_panels.json` and calls `AssetDatabase.Refresh()` |
 
 With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).
