@@ -176,3 +176,16 @@ Saving `ui_panels.json` triggers `UiPrefabPostprocessor` via `AssetPostprocessor
 
 **ODIN Inspector compatibility**
 When `ODIN_INSPECTOR` is defined, `UiManagerEditor` inherits `OdinEditor` so the full ODIN property tree is rendered. The prefab generation helper `UiPrefabHelper` is a plain static class and is completely ODIN-independent.
+
+
+## JSON Editor Window
+
+Open via **JSON Editors → UI Manager** in the Unity menu bar, or via the **Open JSON Editor** button in the UiManager Inspector.
+
+| Action | Result |
+| ------ | ------ |
+| **Load** | Reads `StreamingAssets/ui_panels.json`; creates the file if missing |
+| **Edit** | Add / remove / reorder entries using the Inspector list |
+| **Save** | Writes back to `StreamingAssets/ui_panels.json` and calls `AssetDatabase.Refresh()` |
+
+With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).

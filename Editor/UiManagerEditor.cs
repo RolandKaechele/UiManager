@@ -30,6 +30,9 @@ namespace UiManager.Editor
             // inheriting from OdinEditor, or the standard Unity inspector otherwise.
             base.OnInspectorGUI();
 
+            EditorGUILayout.Space(4);
+            if (GUILayout.Button("Open JSON Editor")) UiPanelJsonEditorWindow.ShowWindow();
+
             var manager = (UiManager.Runtime.UiManager)target;
 
             EditorGUILayout.Space();
